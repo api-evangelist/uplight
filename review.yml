@@ -1,0 +1,268 @@
+aid: uplight
+name: Uplight
+review:
+  question: Does Uplight publish a public, self-serve API surface — and does any energy
+    consumer-data mandate apply to it?
+  answer: false
+  date: '2026-07-27'
+  reviewer: API Evangelist
+  homeMarket: United States
+  tier: grid-tech-derms
+findings:
+  summary: |
+    Uplight is a utility-side software vendor, not a utility and not a regulated data
+    holder. It markets a "Developer Platform" to utilities and ecosystem partners, and
+    a real ReadMe documentation portal exists at docs.uplight.com, but every path under
+    /developer (Documentation, API Reference) 302-redirects to a ReadMe dashboard login.
+    The production API gateway at api.uplight.com is real and answers anonymously with
+    HTTP 401 and a bearer-token error from Kong Enterprise 3.10. No OpenAPI, Swagger,
+    Postman collection, SDK, or endpoint list is publicly retrievable. No Green Button
+    / ESPI reference of any kind was found on uplight.com or in its blog. Uplight does
+    publicly state support for DER control protocols — OpenADR, IEEE 2030.5, Modbus,
+    DNP3 and other SCADA protocols — but those are device/grid control protocols, not
+    consumer data-sharing standards, and none of them is exposed as a public API here.
+  companyFacts:
+    founded: 2019 (merger of Tendril and Simple Energy, completed 2019-07-01)
+    headquarters: Boulder, Colorado, United States
+    acquisitions:
+    - EnergySavvy
+    - FirstFuel
+    - Ecotagious
+    - EEme
+    - AutoGrid (DERMS/VPP, from Schneider Electric; announced 2023-12, closed 2024-02)
+    investorsStated: Octopus Energy Group, Schneider Electric, AES
+    employeesStated: 450+ (uplight.com/about-us/, retrieved 2026-07-27)
+    customers: electric and gas utilities, retailers, and OEMs across North America,
+      Europe, and Asia; 65+ stated ecosystem partners
+mandateAndAccess:
+  mandateRegime: none
+  mandateRegimeNote: |
+    Uplight is a United States software vendor selling to utilities. It is not a
+    licensed retailer, not a distribution utility, and not a designated data holder
+    under any consumer data right. The US Green Button / ESPI standard (NAESB REQ.21,
+    NIST-derived) is adopted voluntarily by utilities with no federal mandate behind
+    it; Ontario's Green Button regulation and the Australian CDR energy sector do not
+    reach a US vendor. No obligation attaches to this organization.
+  mandateStatus: not-applicable
+  mandateStatusNote: |
+    No mandate applies, and Uplight makes no compliance claim of its own to verify.
+    Recorded separately and explicitly: even the standards Uplight DOES claim
+    (OpenADR, IEEE 2030.5) are claims made in a marketing blog post, not verified
+    implementations — no conformance certificate, no certified-product register entry,
+    and no public endpoint was found. A vendor claim is not an implementation, and
+    nothing here was verified beyond the claim itself.
+  dataStandard: |
+    No Green Button / ESPI reference found anywhere on uplight.com or docs.uplight.com.
+    Uplight publicly claims support for OpenADR, Modbus, DNP3 and other SCADA protocols
+    and states it added IEEE 2030.5 head-end capability
+    (https://uplight.com/blog/stepping-up-to-support-open-standards-for-scaling-vpps/,
+    posted 2023-04-20, updated 2024-10-23). Those are DER control / demand response
+    protocols, not consumer data-sharing standards. The public-facing HTTP API surface
+    is proprietary and undocumented; no standard reference found for it.
+  consumerDataApi: false
+  consumerDataApiNote: |
+    A third party cannot obtain an individual customer's usage or billing data from
+    Uplight through any documented public API. Uplight's platform certainly processes
+    utility customer usage and billing data on behalf of its utility clients, and the
+    gated Developer Platform very likely serves it — but nothing about it is publicly
+    documented, no consent flow is published, and no base URI or scope list is
+    retrievable anonymously. Recorded as false on the evidence, not on inference.
+  marketDataOpen: false
+  marketDataOpenNote: |
+    Uplight publishes no open grid, market, system, or emissions data. There is no
+    data.uplight.com (DNS does not resolve), no open-data portal, no bulk downloads,
+    and no anonymous read endpoint. This is the expected posture for a vendor: it is
+    closed on BOTH axes — no open market data and no documented consumer data API —
+    which is a different shape from a utility that is open on one and closed on the
+    other.
+  accessGate: partner-only
+  accessGateNote: |
+    To get in, a developer must be a utility customer or a contracted ecosystem partner
+    of Uplight and be issued credentials for the ReadMe documentation portal; there is
+    no public sign-up form, no self-serve key issuance, no sandbox, no trial, and no
+    published application process. The only public front doors are a marketing site
+    (uplight.com), a docs landing shell (docs.uplight.com, which currently renders
+    placeholder lorem-ipsum body copy), and a "contact us" path. Onboarding is a
+    commercial sales motion.
+  authModel: |
+    Bearer token. api.uplight.com is fronted by Kong Enterprise 3.10 and returns
+    HTTP 401 with {"errors":[{"message":"Invalid or no token provided"}]} to any
+    anonymous request. No OpenID Connect discovery document is served:
+    https://api.uplight.com/.well-known/openid-configuration returns 401 (gateway
+    rejects before routing) and https://uplight.com/.well-known/openid-configuration
+    and https://docs.uplight.com/.well-known/openid-configuration both return 404.
+    auth.uplight.com and login.uplight.com do not resolve. The exact grant type
+    (client credentials vs. issued static token) could not be determined anonymously.
+  developerPortal: https://docs.uplight.com/
+  developerPortalConfirmed: false
+  developerPortalNote: |
+    The portal host returns 200 but is a shell: the landing page carries lorem-ipsum
+    filler and its only in-page link is /login?redirect_uri=/. Every content path is a
+    302 — /developer, /developer/docs and /developer/reference to
+    dash.readme.com/to/uplight, and /docs, /reference, /recipes, /changelog,
+    /documentation, /support back to the root. Not a self-serve developer portal.
+probes:
+  - url: https://uplight.com/
+    status: 200
+    note: Marketing site (WordPress behind Cloudflare). Returns 403 to plain curl
+      without a browser User-Agent; 200 with one.
+  - url: https://uplight.com/platform/
+    status: 200
+    note: '"Energy providers and ecosystem partners can use our flexible APIs to embed
+      a wide range of customer engagement and energy flexibility insights across any
+      channel." No standard named on the page, no developer URL given.'
+  - url: https://uplight.com/about-us/
+    status: 200
+    note: Company facts; 301 from https://uplight.com/company/.
+  - url: https://uplight.com/partners/
+    status: 200
+  - url: https://uplight.com/blog/
+    status: 200
+  - url: https://uplight.com/blog/feed/
+    status: 200
+    note: WordPress RSS feed.
+  - url: https://uplight.com/press/
+    status: 200
+  - url: https://uplight.com/privacy-policy/
+    status: 200
+  - url: https://uplight.com/developers/
+    status: 403
+    note: Cloudflare bot block on plain curl; no such page exists via browser UA path
+      either (see /developer 404 below).
+  - url: https://uplight.com/developer
+    status: 404
+  - url: https://uplight.com/api
+    status: 404
+  - url: https://uplight.com/docs
+    status: 404
+  - url: https://uplight.com/data
+    status: 404
+  - url: https://uplight.com/openapi.json
+    status: 404
+  - url: https://uplight.com/swagger.json
+    status: 404
+  - url: https://uplight.com/.well-known/security.txt
+    status: 404
+  - url: https://uplight.com/.well-known/openid-configuration
+    status: 404
+  - url: https://docs.uplight.com/
+    status: 200
+    note: ReadMe-hosted portal (meta readme-subdomain=uplight, readme-deploy 5.825.0).
+      Public shell with placeholder copy; only link is /login.
+  - url: https://docs.uplight.com/robots.txt
+    status: 200
+    note: Allows crawling but disallows /login, /logout, /edit/, /*/api-next.
+  - url: https://docs.uplight.com/developer
+    status: 302
+    note: Redirects to https://dash.readme.com/to/uplight?redirect=%2Fdeveloper (login).
+  - url: https://docs.uplight.com/developer/docs
+    status: 302
+    note: Redirects to ReadMe dashboard login.
+  - url: https://docs.uplight.com/developer/reference
+    status: 302
+    note: Redirects to https://dash.readme.com/to/uplight?redirect=%2Fdeveloper%2Freference
+      (login). This is the API Reference — it is gated.
+  - url: https://docs.uplight.com/docs
+    status: 302
+    note: Redirects to portal root.
+  - url: https://docs.uplight.com/reference
+    status: 302
+    note: Redirects to portal root.
+  - url: https://docs.uplight.com/recipes
+    status: 302
+  - url: https://docs.uplight.com/changelog
+    status: 302
+  - url: https://docs.uplight.com/documentation
+    status: 302
+  - url: https://docs.uplight.com/support
+    status: 302
+  - url: https://docs.uplight.com/openapi.json
+    status: 200
+    note: NOT a spec. Content-Type text/html — the ReadMe SPA catch-all page. Did not
+      parse as JSON. Nothing harvested.
+  - url: https://docs.uplight.com/swagger.json
+    status: 200
+    note: NOT a spec. Content-Type text/html — ReadMe SPA catch-all. Nothing harvested.
+  - url: https://docs.uplight.com/api-docs
+    status: 200
+    note: NOT a spec. Content-Type text/html — ReadMe SPA catch-all. Nothing harvested.
+  - url: https://docs.uplight.com/reference/openapi.json
+    status: 302
+  - url: https://docs.uplight.com/.well-known/openid-configuration
+    status: 404
+  - url: https://api.uplight.com/
+    status: 401
+    note: 'Real gateway. server: kong/3.10.0.6-enterprise-edition, via 1.1 google.
+      Body: {"errors":[{"message":"Invalid or no token provided"}]}'
+  - url: https://api.uplight.com/v1
+    status: 401
+  - url: https://api.uplight.com/openapi.json
+    status: 401
+  - url: https://api.uplight.com/swagger.json
+    status: 401
+  - url: https://api.uplight.com/.well-known/openid-configuration
+    status: 401
+  - url: https://developer.uplight.com/
+    status: 000
+    note: DNS does not resolve.
+  - url: https://developers.uplight.com/
+    status: 000
+    note: DNS does not resolve.
+  - url: https://data.uplight.com/
+    status: 000
+    note: DNS does not resolve.
+  - url: https://auth.uplight.com/.well-known/openid-configuration
+    status: 000
+    note: DNS does not resolve.
+  - url: https://login.uplight.com/
+    status: 000
+    note: DNS does not resolve.
+  - url: https://status.uplight.com/
+    status: 000
+    note: DNS does not resolve. No public status page found.
+  - url: https://shine.uplight.com/
+    status: 302
+    note: Redirects to wp-login.php — an internal WordPress property, not a developer
+      surface.
+  - url: https://www.auto-grid.com/
+    status: 000
+    note: AutoGrid's own domain no longer resolves post-acquisition; no separate
+      AutoGrid developer portal found.
+  - url: https://api.github.com/orgs/uplight-inc
+    status: 200
+    note: GitHub org "Uplight-Inc", 3 public repos (gbqschema_converter,
+      fake-schema-cli, path-filtering-orb) — internal tooling, no API specs.
+  - url: https://api.github.com/orgs/uplight
+    status: 404
+    note: github.com/uplight is an unrelated individual user, not the company.
+  - url: https://www.linkedin.com/company/uplight
+    status: 200
+sources:
+  - url: https://uplight.com/platform/
+    type: Documentation
+    note: Platform modules and the "flexible APIs" claim.
+  - url: https://uplight.com/blog/uplights-developer-platform-decisions-made-easy-for-customers-and-utilities/
+    type: Blog
+    note: Developer Platform positioning. Names no API, no endpoint, no access path.
+  - url: https://uplight.com/blog/stepping-up-to-support-open-standards-for-scaling-vpps/
+    type: Blog
+    note: Source of the OpenADR / Modbus / DNP3 / IEEE 2030.5 claim. Marketing claim,
+      not a verified conformance record.
+  - url: https://uplight.com/about-us/
+    type: Documentation
+    note: Employee count, investor list (Octopus Energy Group, Schneider Electric, AES),
+      B Corp status.
+  - url: https://uplight.com/press/uplight-to-acquire-autogrid/
+    type: Press
+    note: AutoGrid (DERMS/VPP) acquisition.
+  - url: https://docs.uplight.com/
+    type: Documentation
+    note: The portal. Public shell, gated content.
+artifacts:
+  openapiHarvested: false
+  specsCount: 0
+  reason: |
+    Nothing real was found to save. The only spec-shaped URLs that returned 200
+    (docs.uplight.com/openapi.json, /swagger.json, /api-docs) served text/html SPA
+    shells, not JSON, and were rejected. No openapi/ directory was created because
+    fabricating or reconstructing a spec would be worse than an empty one.

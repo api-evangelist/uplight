@@ -1,0 +1,100 @@
+aid: uplight
+url: https://raw.githubusercontent.com/api-evangelist/uplight/refs/heads/main/apis.yml
+name: Uplight
+kind: company
+description: >-
+  Uplight is a Boulder, Colorado energy technology company formed in 2019 from the
+  merger of Tendril and Simple Energy and expanded through the acquisitions of
+  EnergySavvy, FirstFuel, Ecotagious, EEme, and DERMS/VPP provider AutoGrid (closed
+  February 2024). It sells software to electric and gas utilities and retailers in
+  North America, Europe, and Asia rather than to consumers, covering energy efficiency
+  and electrification marketplaces, home energy reports, rate engagement, demand
+  response, distributed energy resource management (DERMS), virtual power plants, and
+  a utility data lake with analytics. In the United States value chain Uplight sits on
+  the utility side of the meter as a vendor and orchestration layer between the
+  utility, its customers, and connected devices, and it publicly states support for
+  OpenADR, IEEE 2030.5, Modbus, DNP3 and other SCADA protocols for DER control. Its
+  API posture is honestly closed — a Developer Platform exists and is marketed to
+  utilities and ecosystem partners, the documentation portal at docs.uplight.com
+  serves a public landing shell but every Documentation and API Reference path
+  redirects to a ReadMe login, and the production gateway at api.uplight.com answers
+  anonymously only with HTTP 401 and a bearer-token error. No consumer usage-data API,
+  no open market data, no downloadable OpenAPI, and no Green Button or ESPI reference
+  could be found. Uplight is a software vendor, not a regulated data holder, so no
+  consumer data mandate applies to it.
+image: https://uplight.com/wp-content/uploads/2019/07/cropped-uplight-icon-1-192x192.png
+tags:
+- Energy
+- United States
+- Utilities
+- Electricity
+- Gas
+- Demand Response
+- DER
+- Grid
+- Virtual Power Plant
+- DERMS
+- Energy Efficiency
+- Customer Engagement
+created: '2026-07-27'
+modified: '2026-07-27'
+specificationVersion: '0.19'
+apis:
+- aid: uplight:uplight-developer-platform-api
+  name: Uplight Developer Platform API
+  description: >-
+    Uplight markets a Developer Platform that exposes customer, program, eligibility,
+    enrollment, device, and energy-flexibility data to utilities and ecosystem partners
+    through APIs. The reference is published on a ReadMe portal at docs.uplight.com,
+    but the /developer path 302-redirects to dash.readme.com login, so no operation,
+    schema, scope, or rate limit is publicly readable. The production gateway at
+    api.uplight.com is real and reachable (Kong Enterprise 3.10) but returns HTTP 401
+    with an "Invalid or no token provided" error to every anonymous request, including
+    /openapi.json, /swagger.json, /v1, and /.well-known/openid-configuration. Listed
+    here as a real but fully gated surface; no endpoints are claimed because none are
+    documented publicly.
+  humanURL: https://docs.uplight.com/
+  baseURL: https://api.uplight.com
+  tags:
+  - Energy
+  - Utilities
+  - Demand Response
+  - DER
+  - Customer Engagement
+  properties:
+  - type: Documentation
+    url: https://docs.uplight.com/
+  - type: APIReference
+    url: https://docs.uplight.com/developer/reference
+  - type: Documentation
+    url: https://uplight.com/platform/
+  - type: Documentation
+    url: https://uplight.com/blog/uplights-developer-platform-decisions-made-easy-for-customers-and-utilities/
+common:
+- type: Website
+  url: https://uplight.com/
+- type: Documentation
+  url: https://docs.uplight.com/
+- type: APIReference
+  url: https://docs.uplight.com/developer/reference
+- type: About
+  url: https://uplight.com/about-us/
+- type: Platform
+  url: https://uplight.com/platform/
+- type: Partners
+  url: https://uplight.com/partners/
+- type: Blog
+  url: https://uplight.com/blog/
+- type: BlogRSS
+  url: https://uplight.com/blog/feed/
+- type: Press
+  url: https://uplight.com/press/
+- type: Privacy
+  url: https://uplight.com/privacy-policy/
+- type: GitHubOrganization
+  url: https://github.com/Uplight-Inc
+- type: LinkedIn
+  url: https://www.linkedin.com/company/uplight
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
