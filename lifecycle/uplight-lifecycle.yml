@@ -1,0 +1,52 @@
+generated: '2026-07-27'
+method: searched
+source: live probes of uplight.com, docs.uplight.com, api.uplight.com (2026-07-27)
+summary: >-
+  Uplight publishes no public API lifecycle surface. There is no status page, no public
+  changelog or release notes, no versioning policy, no deprecation or sunset policy, and
+  no SLA document reachable anonymously. Every lifecycle signal a partner would use lives
+  behind the ReadMe login or inside a commercial contract.
+versioning:
+  scheme: unknown
+  current: null
+  docs: null
+  note: >-
+    api.uplight.com/v1 returns HTTP 401 from the Kong gateway, which rejects before
+    routing — that 401 is not evidence that a /v1 prefix exists. No versioning policy is
+    published.
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  note: >-
+    No deprecation policy found. RFC 8594 Sunset/Deprecation header support cannot be
+    tested because no operation can be reached anonymously.
+sla:
+  url: null
+  uptime_target: null
+  note: Any availability commitment is contractual; nothing is published.
+status_page: null
+status_page_probes:
+- url: https://status.uplight.com/
+  status: '000'
+  note: DNS does not resolve.
+- url: https://uplight.statuspage.io/
+  status: 302
+  note: >-
+    Redirects to https://www.statuspage.io/ (the Atlassian product marketing site) — the
+    subdomain is unclaimed, NOT an Uplight status page. Checked 2026-07-27.
+changelog:
+  url: null
+  probes:
+  - url: https://docs.uplight.com/changelog
+    status: 302
+    note: Redirects to the portal root for anonymous visitors.
+  - source: docs.uplight.com public ReadMe shell
+    note: >-
+      The anonymous ReadMe project view renders "No Changelogs", "No Guides", "No
+      Recipes" and "No API Endpoints" — the public projection of the portal is empty.
+deprecated_operations: []
+deprecated_operations_note: >-
+  Cannot be derived — no OpenAPI exists in this repo (see review.yml artifacts).
+pointer_note: >-
+  Wired as type Lifecycle only. Deliberately NOT wired as StatusPage or Deprecation —
+  neither exists, and both are separately scored checks that must not be credited here.

@@ -1,0 +1,98 @@
+generated: '2026-07-27'
+method: searched
+source: https://uplight.com/blog/stepping-up-to-support-open-standards-for-scaling-vpps/
+summary: >-
+  Uplight names a set of DER control / demand response standards it says its platform
+  supports. Every one of these is a vendor marketing claim in a blog post — no
+  conformance certificate, certified-product register entry, test report, or public
+  endpoint was found for any of them. They are recorded here as claimed, not verified.
+  On the web-API side nothing can be asserted: no OpenAPI, no OAuth/OIDC discovery, and
+  no publicly readable reference exist, so the cross-cutting HTTP standards are recorded
+  as unknown rather than false where the gated surface could plausibly implement them.
+standards:
+- id: openadr
+  name: OpenADR
+  conforms: claimed
+  verified: false
+  evidence: >-
+    "supporting standards such as OpenADR" — uplight.com blog, "Stepping Up to Support
+    Open Standards for Scaling VPPs" (posted 2023-04-20, updated 2024-10-23). No version
+    (2.0a/2.0b/3.0) named, no OpenADR Alliance certification record found.
+- id: ieee-2030.5
+  name: IEEE 2030.5 (SEP 2.0)
+  conforms: claimed
+  verified: false
+  evidence: >-
+    "Adding IEEE 2030.5 head-end capability to our platform makes it even more versatile
+    and powerful" — same post. Head-end capability claim only; no CSIP/SunSpec
+    certification record found.
+- id: modbus
+  name: Modbus
+  conforms: claimed
+  verified: false
+  evidence: '"supporting standards such as ... Modbus" — same post.'
+- id: dnp3
+  name: DNP3
+  conforms: claimed
+  verified: false
+  evidence: '"supporting standards such as ... DNP3, and other SCADA protocols" — same post.'
+- id: sunspec
+  name: SunSpec Alliance standards
+  conforms: unknown
+  verified: false
+  evidence: >-
+    SunSpec Alliance is referenced in the post as a standards consortium; Uplight does not
+    claim implementation of a specific SunSpec profile.
+- id: green-button-espi
+  name: Green Button / NAESB REQ.21 ESPI
+  conforms: false
+  verified: false
+  evidence: >-
+    No Green Button or ESPI reference found anywhere on uplight.com or docs.uplight.com
+    (searched 2026-07-27). Uplight is a utility-side vendor, not a designated data holder.
+- id: openapi
+  name: OpenAPI
+  conforms: false
+  verified: false
+  evidence: >-
+    No machine-readable spec published. docs.uplight.com/openapi.json, /swagger.json and
+    /api-docs return the ReadMe SPA HTML shell; api.uplight.com/openapi.json returns 401;
+    the public ReadMe project view reports "No API Endpoints".
+- id: oauth2
+  name: OAuth 2.0
+  conforms: unknown
+  verified: false
+  evidence: >-
+    api.uplight.com requires a bearer token but no authorization-server metadata is
+    served (RFC 8414 probe returns 401 at the gateway; uplight.com and docs.uplight.com
+    return 404). Grant type could not be determined anonymously.
+- id: oidc
+  name: OpenID Connect Discovery
+  conforms: false
+  verified: false
+  evidence: >-
+    No /.well-known/openid-configuration on any host (uplight.com 404,
+    docs.uplight.com 404, api.uplight.com 401); auth.uplight.com and login.uplight.com
+    do not resolve in DNS.
+- id: rfc9457-problem-details
+  name: RFC 9457 Problem Details
+  conforms: false
+  verified: false
+  evidence: >-
+    The only observable error envelope is the Kong gateway default
+    {"errors":[{"message":"Invalid or no token provided"}]} with content-type
+    application/json — not application/problem+json.
+- id: rfc9116-security-txt
+  name: RFC 9116 security.txt
+  conforms: false
+  verified: false
+  evidence: 'No /.well-known/security.txt on any host — see well-known/uplight-well-known.yml.'
+- id: soc2-type2
+  name: SOC 2 Type 2
+  conforms: claimed
+  verified: false
+  evidence: >-
+    "Independently-audited SOC 2 Type 2 reports with year after year compliance" —
+    https://uplight.com/resources/integrated-approach-security-privacy-compliance/
+    (gated brief landing page). Report itself is not public; see
+    security/uplight-compliance.yml.

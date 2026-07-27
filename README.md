@@ -75,8 +75,33 @@ Closed on both axes — no open market data and no documented consumer data API.
 - [Blog RSS](https://uplight.com/blog/feed/)
 - [Press](https://uplight.com/press/)
 - [Privacy](https://uplight.com/privacy-policy/)
+- [Terms of Service](https://uplight.com/terms-of-service/)
+- [Cookie Policy](https://uplight.com/cookie-policy/)
+- [Contact](https://uplight.com/contact-us/)
+- [Resources](https://uplight.com/resources/)
+- [Compliance](https://uplight.com/resources/integrated-approach-security-privacy-compliance/) — states independently-audited SOC 2 Type 2 reports
 - [GitHub Organization](https://github.com/Uplight-Inc)
 - [LinkedIn](https://www.linkedin.com/company/uplight)
+
+## Artifacts
+
+Uplight publishes no machine-readable contract, so most of the enrichment here is a
+recorded negative — the probes and the absence are the finding.
+
+| Artifact | Method | What it says |
+|---|---|---|
+| [conformance/uplight-conformance.yml](conformance/uplight-conformance.yml) | searched | OpenADR, IEEE 2030.5, Modbus, DNP3 recorded as **claimed, not verified**; no OpenAPI, no OIDC, no RFC 9457, no Green Button |
+| [authentication/uplight-authentication.yml](authentication/uplight-authentication.yml) | probed | Bearer token at a Kong Enterprise 3.10 edge; grant type undeterminable anonymously; no discovery document; partner-only credential issuance |
+| [lifecycle/uplight-lifecycle.yml](lifecycle/uplight-lifecycle.yml) | searched | No status page (`uplight.statuspage.io` is unclaimed), no public changelog, no versioning or deprecation policy, no published SLA |
+| [security/uplight-compliance.yml](security/uplight-compliance.yml) | searched | SOC 2 Type 2 + third-party pen testing claimed on a public page; no trust center; no security.txt, no disclosure policy, no bug bounty |
+| [security/uplight-domain-security.yml](security/uplight-domain-security.yml) | probed | TLS 1.3 on all three hosts, HSTS on the web hosts (not the gateway), SPF + DMARC `p=reject`, no DNSSEC, no CAA |
+| [well-known/uplight-well-known.yml](well-known/uplight-well-known.yml) | searched | Every `/.well-known/` probe missed on every host; the ReadMe 200s are SPA shells, not documents |
+| [llms/uplight-llms.txt](llms/uplight-llms.txt) | generated | Agent-facing summary that leads with "this API is gated — do not guess endpoints" |
+
+No `openapi/`, `packages/`, `mcp/`, `skills/`, `sandbox/`, `changelog/`, or `errors/`
+artifacts exist: there is no spec to derive from, no first-party SDK on any registry
+(the three archived `Uplight-Inc` GitHub repos are internal tooling; `gbqschema-converter`
+on PyPI is authored by an individual, not Uplight), and no public error or test surface.
 
 ## Maintainers
 

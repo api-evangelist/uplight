@@ -71,6 +71,8 @@ apis:
   - type: Documentation
     url: https://uplight.com/blog/uplights-developer-platform-decisions-made-easy-for-customers-and-utilities/
 common:
+- type: DomainSecurity
+  url: security/uplight-domain-security.yml
 - type: Website
   url: https://uplight.com/
 - type: Documentation
@@ -91,6 +93,24 @@ common:
   url: https://uplight.com/press/
 - type: Privacy
   url: https://uplight.com/privacy-policy/
+- type: PrivacyPolicy
+  url: https://uplight.com/privacy-policy/
+- type: TermsOfService
+  url: https://uplight.com/terms-of-service/
+- type: CookiePolicy
+  url: https://uplight.com/cookie-policy/
+- type: Contact
+  url: https://uplight.com/contact-us/
+- type: Resources
+  url: https://uplight.com/resources/
+- type: Compliance
+  url: https://uplight.com/resources/integrated-approach-security-privacy-compliance/
+- type: Conformance
+  url: conformance/uplight-conformance.yml
+- type: Lifecycle
+  url: lifecycle/uplight-lifecycle.yml
+- type: LLMsTxt
+  url: llms/uplight-llms.txt
 - type: GitHubOrganization
   url: https://github.com/Uplight-Inc
 - type: LinkedIn

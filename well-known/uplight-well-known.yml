@@ -1,0 +1,67 @@
+generated: '2026-07-27'
+method: searched
+source: live probes of every apis.yml host (uplight.com, docs.uplight.com, api.uplight.com)
+summary: >-
+  No .well-known discovery surface is published on any Uplight host. The marketing site
+  returns 404 for every probed path, the production API gateway (Kong Enterprise 3.10)
+  rejects every anonymous request with HTTP 401 before routing, and the ReadMe
+  documentation portal answers 200 with its SPA catch-all HTML page for arbitrary paths
+  (a 200 there is not a document). Nothing was harvested; no raw files were saved because
+  none of the responses were real discovery documents.
+hosts:
+- host: https://uplight.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://docs.uplight.com
+  note: >-
+    ReadMe-hosted portal. Returns HTTP 200 with text/html (~200KB SPA shell) for
+    arbitrary paths including /.well-known/security.txt, so a 200 here is NOT evidence of
+    a document. Verified by content-type and body inspection; nothing parsed.
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    parsed: false
+    content_type: text/html
+    note: SPA catch-all shell, not RFC 9116 text. Rejected.
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://api.uplight.com
+  note: >-
+    Kong Enterprise 3.10 gateway. Every anonymous request returns HTTP 401 with
+    {"errors":[{"message":"Invalid or no token provided"}]} — the gateway rejects before
+    routing, so a 401 is not evidence that the path exists.
+  documents:
+  - path: /.well-known/security.txt
+    status: 401
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+  - path: /.well-known/oauth-protected-resource
+    status: 401
+  - path: /mcp
+    status: 401
+findings:
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: false
+  api_catalog: false
+  ai_plugin: false
+  llms_txt: false
+pointer_note: >-
+  No apis.yml WellKnown pointer is wired for this file. Every probe missed; the artifact
+  records the negative result so future rounds do not re-probe blind. Wire type WellKnown
+  only if Uplight later publishes a real discovery document.

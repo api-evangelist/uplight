@@ -1,0 +1,61 @@
+generated: '2026-07-27'
+method: searched
+source: https://uplight.com/resources/integrated-approach-security-privacy-compliance/
+trust_center: false
+trust_center_note: >-
+  No trust portal exists. trust.uplight.com and security.uplight.com do not resolve in
+  DNS; uplight.com/trust/, /security/, /security, and /compliance all return 404. The
+  compliance posture below is published on a marketing resource page (a gated brief
+  landing page), not on a trust center.
+url: https://uplight.com/resources/integrated-approach-security-privacy-compliance/
+certifications:
+- id: soc2-type2
+  name: SOC 2 Type 2
+  status: claimed
+  report_public: false
+  evidence: >-
+    "Independently-audited SOC 2 Type 2 reports with year after year compliance" —
+    Uplight's Integrated Approach to Security, Privacy, and Compliance (retrieved
+    2026-07-27). The report is not downloadable publicly; obtaining it is a commercial /
+    NDA motion.
+practices:
+- id: third-party-penetration-testing
+  evidence: >-
+    "Proactive security tests that are conducted by third-party penetration testers to
+    identify potential vulnerabilities and rectify them effectively."
+- id: employee-security-training
+  evidence: Page states employees are trained on security threats.
+not_found:
+  iso_27001: true
+  pci_dss: true
+  hipaa: true
+  fedramp_or_stateramp: true
+  csa_star: true
+  note: >-
+    None of these frameworks is named on any public Uplight page found on 2026-07-27.
+    Absence here is recorded evidence, not an assertion that Uplight lacks them.
+privacy:
+  policy: https://uplight.com/privacy-policy/
+  cookie_policy: https://uplight.com/cookie-policy/
+  rights_request_form: https://uplight.com/privacy-request/
+  regulations_referenced:
+  - GDPR
+  - CCPA
+  note: >-
+    GDPR and CCPA are referenced inside the privacy policy in the context of cookie /
+    fraud-prevention tooling and data-subject rights; Uplight publishes a Privacy Rights
+    Request Form.
+vulnerability_disclosure:
+  published: false
+  evidence: >-
+    No /.well-known/security.txt on any host; uplight.com/responsible-disclosure/,
+    /vulnerability-disclosure/ and /security-policy/ all return 404; no HackerOne (404),
+    Bugcrowd (404) or Intigriti program found (the Intigriti path returns an SPA shell
+    with no mention of Uplight). No security@ address is published on the site or in the
+    privacy policy. Probed 2026-07-27 with 0-working/probe-security-programs.py plus
+    manual checks; the probe wrote nothing because there was no hit.
+pointer_note: >-
+  Wired as type Compliance in apis.yml because Uplight genuinely publishes a named
+  certification claim (SOC 2 Type 2) on a public page. Deliberately NOT wired as
+  TrustCenter (no trust portal exists) or Security / VulnerabilityDisclosure (no
+  disclosure policy exists).

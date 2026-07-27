@@ -1,0 +1,28 @@
+generated: '2026-07-27'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: uplight.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 22 17:33:31 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: docs.uplight.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  2 20:06:36 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.uplight.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  4 14:51:33 2026 GMT
+  hsts: null
+domains:
+- domain: uplight.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
