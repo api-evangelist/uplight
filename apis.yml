@@ -22,6 +22,17 @@ description: >-
   no open market data, no downloadable OpenAPI, and no Green Button or ESPI reference
   could be found. Uplight is a software vendor, not a regulated data holder, so no
   consumer data mandate applies to it.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://uplight.com/wp-content/uploads/2019/07/cropped-uplight-icon-1-192x192.png
 tags:
 - Energy
